@@ -1,0 +1,19 @@
+{
+  "name": "bmi-calculation",
+  "version": "1.0.0",
+  "description": "This project will be calculating large set of data to calculate BMI",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Bhushan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.1.3"
+  }
+}
