@@ -4,7 +4,7 @@
 function bmi_category_and_health_risk(bmi) {
 
   var category_and_health_risk = []
-
+  
   if (bmi <= 18.4) {
     return category_and_health_risk = { bmi: bmi, category: 'Underweight', health_risk: 'Malnutrition risk' }
   }
