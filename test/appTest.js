@@ -78,4 +78,15 @@ describe('testing a function bmi_category_and_health_risk() ',function() {
     assert.isString(result.health_risk)
   })
 
+  it('Testing by passing Zero(0) to bmi_category_and_health_risk() ',function() {
+    let result = app.bmi_category_and_health_risk(0)
+    const expectedResult ={
+      bmi: 0,
+      category: 'Underweight',
+      health_risk: 'Malnutrition risk'
+    }
+    assert.equal(result.bmi,0,'checking correct BMI')
+  })
+
+
 });

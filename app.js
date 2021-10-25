@@ -1,12 +1,17 @@
 // express is server 
 // body parser - Parse incoming request bodies in a middleware before your handlers, available under the req.body property
 
-const express_server = require('express')
-const body_parser = require('body-parser')
-const app = express_server()
+const express_server = require('express');
+const body_parser = require('body-parser');
+const app = express_server();
 const utils = require('./utility/utility')
 app.use(body_parser.urlencoded({ extended: true }))
+  fs = require('fs')
 const server_port = 3001
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+const customCss = fs.readFileSync((process.cwd()+"/swagger.css"), 'utf8');
 
 app.use(express_server.json({
   inflate: true,
@@ -18,8 +23,9 @@ app.use(express_server.json({
 }))
 
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {customCss}));
 
-app.post('/bmi', function (req, res) {
+app.post('/api/bmi', function (req, res) {
   // console.log(req.body);
   // for(var item of req.body) {
   //   console.log('Gender: ', [item.Gender] , 'HeightCm: ', [item.HeightCm] ,'WeightKg: ', [item.WeightKg] );
@@ -31,7 +37,7 @@ app.post('/bmi', function (req, res) {
 
 
 
- app.get('/status', (req, res) => {
+ app.get('api/status', (req, res) => {
   res.send('server is running')
 }
 )

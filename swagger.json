@@ -1,0 +1,159 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a BMI calculation project to demonstrate Swagger Documentation",
+        "version": "1.0.0",
+        "title": "Tasks API",
+        "contact": {
+            "email": "bhooshanmore@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": ["http"],
+    "host": "localhost:3001",
+    "basePath": "/api",
+    "paths" : {
+        "/status" : {
+            "get" : {
+                "summary" : "To check is server up and running",
+                "description": "To check is server up and running",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "status": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/bmi" : {
+            "post" : {
+                "summary" : "Send BMI calculation json array",
+                "description": "This API end point will return the BMI for each records,including health rish and category",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "BMI",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Task"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation, the healthRiskAnalysis and healthRiskAnalysis objects will change as per result ",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/bmiResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    
+    "definitions": {
+        "bmiResponse": {
+            "properties": {
+                "Gender": {
+                     "type": "string"
+                },
+                "HeightCm": {
+                    "type": "integer"
+                },
+                "WeightKg": {
+                    "type": "integer"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "health_risk": {
+                    "type": "string"
+                },
+                "bmi": {
+                    "type": "integer"
+                },
+                "categoryAnalysis": {
+                    "$ref": "#/definitions/categoryAnalysis"
+                },
+                "healthRiskAnalysis": {
+                    "$ref": "#/definitions/healthRiskAnalysis"
+                }
+            } 
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+
+        },
+        "Task": {
+            "type": "object",
+            "properties": {
+                "Gender": {
+                    "type": "string"
+                },
+                "HeightCm": {
+                    "type": "integer"
+                },
+                "WeightKg": {
+                    "type": "integer"
+                }
+            }
+        },
+        "categoryAnalysis": {
+            "type": "object",
+            "properties": {
+                "Very severely obese": {
+                    "type": "integer"
+                },
+                "Severely obese": {
+                    "type": "integer"
+                } 
+            }
+        },
+        "healthRiskAnalysis": {
+            "type": "object",
+            "properties": {
+                "Very high risk": {
+                    "type": "integer"
+                },
+                "High risk": {
+                    "type": "integer"
+                } 
+            }
+        }
+    }
+}
