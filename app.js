@@ -6,7 +6,7 @@ const body_parser = require('body-parser');
 const app = express_server();
 const utils = require('./utility/utility')
 app.use(body_parser.urlencoded({ extended: true }))
-  fs = require('fs')
+var fs = require('fs');
 const server_port = 3001
 
 const swaggerUi = require('swagger-ui-express');
@@ -26,11 +26,6 @@ app.use(express_server.json({
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {customCss}));
 
 app.post('/api/bmi', function (req, res) {
-  // console.log(req.body);
-  // for(var item of req.body) {
-  //   console.log('Gender: ', [item.Gender] , 'HeightCm: ', [item.HeightCm] ,'WeightKg: ', [item.WeightKg] );
-  // }
-
   var result = utils.calculate_bmi(req)
   res.send(result)
 })

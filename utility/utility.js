@@ -1,28 +1,28 @@
 
-
-
 function bmi_category_and_health_risk(bmi) {
 
   var category_and_health_risk = []
   
   if (bmi <= 18.4) {
-    return category_and_health_risk = { bmi: bmi, category: 'Underweight', health_risk: 'Malnutrition risk' }
+     category_and_health_risk =  { bmi: bmi, category: 'Underweight', health_risk: 'Malnutrition risk' }
   }
   else if (bmi >= 18.5 && bmi <= 24.9) {
-    return category_and_health_risk = { bmi: bmi, category: ' Normal weight', health_risk: 'Low risk' }
+     category_and_health_risk =  { bmi: bmi, category: ' Normal weight', health_risk: 'Low risk' }
   }
   if (bmi >= 25 && bmi <= 29.9) {
-    return category_and_health_risk = { bmi: bmi, category: ' Overweight', health_risk: ' Enhanced risk' }
+     category_and_health_risk =  { bmi: bmi, category: ' Overweight', health_risk: ' Enhanced risk' }
   }
   if (bmi >= 30 && bmi <= 34.9) {
-    return category_and_health_risk = { bmi: bmi, category: ' Moderately obese', health_risk: '  Medium risk' }
+     category_and_health_risk =  { bmi: bmi, category: ' Moderately obese', health_risk: '  Medium risk' }
   }
   if (bmi >= 35 && bmi <= 39.9) {
-    return category_and_health_risk = { bmi: bmi, category: 'Severely obese', health_risk: 'High risk' }
+     category_and_health_risk =  { bmi: bmi, category: 'Severely obese', health_risk: 'High risk' }
   }
   if (bmi >= 40) {
-    return category_and_health_risk = { bmi: bmi, category: 'Very severely obese', health_risk: 'Very high risk' }
+     category_and_health_risk = { bmi: bmi, category: 'Very severely obese', health_risk: 'Very high risk' }
   }
+
+  return category_and_health_risk;
 
 }
 
@@ -40,7 +40,7 @@ function calculate_bmi(req) {
       WeightKg: item.WeightKg
     };
 
-    temp = bmi_category_and_health_risk(bmi)
+    var temp = bmi_category_and_health_risk(bmi)
     data.category = temp.category
     data.health_risk = temp.health_risk
     data.bmi = temp.bmi
