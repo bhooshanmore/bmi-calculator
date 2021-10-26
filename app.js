@@ -7,7 +7,7 @@ const express_server = require('express');
 const cors = require('cors');
 const body_parser = require('body-parser');
 const rateLimit = require('express-rate-limit');
-var donenv = require('dotenv').config();
+require('dotenv').config();
 const app = express_server();
 const utils = require('./utility/utility')
 

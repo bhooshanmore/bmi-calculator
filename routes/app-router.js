@@ -4,7 +4,7 @@ const router = express_server.Router();
 const utils = require('../utility/utility');
 const logger = utils.getLogger();
 const apicache = require('apicache')
-var donenv = require('dotenv').config();
+require('dotenv').config();
 
 //Initialize cache
 let cache = apicache.middleware

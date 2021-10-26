@@ -43,7 +43,9 @@ To learn how to install and use this theme check out the [Setup Guide](http://mm
 
 ## Added express-rate-limit 
    To limit number hit per min ,current config is 5 request per 10 min limit
-
+## Access swagger API Documentation
+    http://localhost:3001/api-docs/
+    
 ## Sample Json
 ```[
     {

@@ -80,9 +80,9 @@ function getLogger() {
     maxFiles: '14d'
   });
 
-  transport.on('rotate', function (oldFilename, newFilename) {
-    // do something fun
-  });
+  // transport.on('rotate', function (oldFilename, newFilename) {
+  //   // do something fun
+  // });
 
   var logger = winston.createLogger({
     transports: [
