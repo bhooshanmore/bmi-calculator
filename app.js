@@ -2,42 +2,40 @@
 // body parser - Parse incoming request bodies in a middleware before your handlers, available under the req.body property
 // winston - logging purposes 
 
-// Logger configuration
-const winston = require('winston');
-require('winston-daily-rotate-file');
-
-var transport = new winston.transports.DailyRotateFile({
-  filename: 'logs/bmi-%DATE%.log',
-  datePattern: 'YYYY-MM-DD-HH',
-  zippedArchive: true,
-  maxSize: '20m',
-  maxFiles: '14d'
-});
-
-transport.on('rotate', function(oldFilename, newFilename) {
-  // do something fun
-});
-
-var logger = winston.createLogger({
-  transports: [
-    transport
-  ]
-});
-
 
 const express_server = require('express');
+const cors = require('cors');
 const body_parser = require('body-parser');
+const rateLimit = require('express-rate-limit');
+var donenv = require('dotenv').config();
 const app = express_server();
 const utils = require('./utility/utility')
+
+//Rate limiting configuration
+const limiter = rateLimit({
+  windowMs : process.env.LIMITER_RATE_MS,
+  max:process.env.LIMITER_RATE_MAX
+})
+app.use(limiter);
+app.set('trust proxy ',1)
+
 app.use(body_parser.urlencoded({ extended: true }))
 var fs = require('fs');
 
-const server_port = 3001
-const host = "localhost";
 
+const server_port = process.env.PORT || 3000;
+const host = process.env.HOST;
+
+// swagger configuration 
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const swaggerDocument = require('./apidocs-swagger.json');
 const customCss = fs.readFileSync((process.cwd() + "/swagger.css"), 'utf8');
+
+// logger 
+const logger = utils.getLogger();
+
+//Enable cors
+app.use(cors());
 
 app.use(express_server.json({
   inflate: true,
@@ -51,30 +49,34 @@ app.use(express_server.json({
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { customCss }));
 
-app.post('/api/bmi', function (req, res) {
-  logger.log({message:'/api/bmi is called '  ,level: 'info'})
-  var result = utils.calculate_bmi(req)
-  res.send(result)
-})
+//Router
+app.use('/api/bmi',require('./routes/app-router'))
 
 
-// Capture 500 errors
-app.use((err,req,res,next) => {
-  res.status(500).send('Could not perform this action!');
-     logger.error(`${err.status || 500} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-  })
+// app.post('/api/bmi', function (req, res) {
+//   logger.log({message:'/api/bmi is called '  ,level: 'info'})
+//   var result = utils.calculate_bmi(req)
+//   res.send(result)
+// })
+
+
+// // Capture 500 errors
+// app.use((err,req,res,next) => {
+//   res.status(500).send('Could not perform this action!');
+//      logger.error(`${err.status || 500} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+//   })
   
-  // Capture 404 erors
-  app.use((req,res,next) => {
-      res.status(404).send("PAGE NOT FOUND");
-      logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-  })
+//   // Capture 404 erors
+//   app.use((req,res,next) => {
+//       res.status(404).send("PAGE NOT FOUND");
+//       logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+//   })
 
 
-app.get('api/status', (req, res) => {
-  res.send('server is running')
-}
-)
+// app.get('api/status', (req, res) => {
+//   res.send('server is running')
+// }
+// )
 
  
 

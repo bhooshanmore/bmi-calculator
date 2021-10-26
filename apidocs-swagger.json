@@ -31,7 +31,7 @@
                     "400": {
                         "description": "Invalid status value",
                         "schema": {
-                            "status": "string"
+                            "type": "string"
                         }
                     }
                 }

@@ -22,6 +22,28 @@ Minimal Mistakes takes advantage of Sass and data files to make customizing easi
 
 To learn how to install and use this theme check out the [Setup Guide](http://mmistakes.github.io/minimal-mistakes/theme-setup/) for more information.
 
+## Added below packages.
+ 1) "apicache": "^1.6.3"
+ 2) "body-parser": "^1.19.0"
+ 3) "cors": "^2.8.5"
+ 4) "dotenv": "^10.0.0"
+ 5) "express": "^4.17.1"
+ 6) "express-rate-limit": "^5.5.0"
+ 7) "needle": "^3.0.0"
+ 8) "swagger-jsdoc": "^6.1.0"
+ 9) "swagger-ui-express": "^4.1.6"
+ 10) "winston": "^3.3.3"
+ 11) "winston-daily-rotate-file": "^4.5.5"
+
+## devDependencies
+1) "chai": "^4.3.4"
+2) "eslint": "^8.1.0"
+3) "mocha": "^9.1.3"
+4) "nodemon": "^2.0.14"
+
+## Added express-rate-limit 
+   To limit number hit per min ,current config is 5 request per 10 min limit
+
 ## Sample Json
 ```[
     {
