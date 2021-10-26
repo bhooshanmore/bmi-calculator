@@ -1,6 +1,6 @@
-# Node API Proxy Server
+# BMI calulator
+The application is used for calculating bulk request and will return BMI result
 
-Server used for hiding API keys, rate limiting and caching. This uses the [OpenWeather API](https://openweathermap.org/api) but you can easily change it to whatever public API you are using
 
 ## Usage
 
