@@ -2,8 +2,16 @@
 
 const assert = require("chai").assert;
 const app = require("../utility/utility");
+// const app = require("../test/sampleReq.json");
+const https = require('https')
 
-describe("testing a function bmi_category_and_health_risk() ", function () {
+const chai = require('chai'),
+chaiHttp = require('chai-http'),
+server = require('../app'),
+faker = require('faker'),
+should = chai.should();
+chai.use(chaiHttp);
+describe("Testing bmi_category_and_health_risk() ", function () {
   it("Testing bmi_category_and_health_risk return not null ", function () {
     let result = app.bmi_category_and_health_risk(18.4);
     assert.isNotEmpty(result);

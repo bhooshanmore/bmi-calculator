@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         uglify: {
             build: {
                 src: ['app.js', 'utility/utility.js', 'routes/app-router.js'],
-                dest: 'dist/built.js',
+                dest: 'dist/built_<%= pkg.name %>.js',
             }
         },
         concat: {
@@ -14,14 +14,13 @@ module.exports = function (grunt) {
                 separator: ';'
             },
             dist: {
-                src: ['src/**/*.js'],
+                src: ['app.js', 'utility/utility.js', 'routes/app-router.js'],
                 dest: 'concat/<%= pkg.name %>.js'
             }
         },
         qunit: {
             files: ['test/*.html']
         },
-
 
         clean: {
             src: ['concat','uglify']
@@ -34,7 +33,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
 
     // "grunt default task
-    grunt.registerTask('default', ['uglify', 'concat']);
+    grunt.registerTask('default', ['uglify', 'concat','qunit']);
 };
 
 

@@ -50,7 +50,7 @@ function calculate_bmi(req) {
   var responseJson = {};
   var key = "BMIResult";
   responseJson[key] = [];
-
+  console.log("=================================== "+req)
   req.body.forEach((item) => {
     var bmi = (item.WeightKg / (item.HeightCm / 100)).toFixed(2);
 
@@ -110,8 +110,18 @@ function getLogger() {
   return logger;
 }
 
+
+function isEmpty(obj) {
+  for(var prop in obj) {
+      if(obj.hasOwnProperty(prop))
+          return false;
+  }
+  return JSON.stringify(obj) === JSON.stringify({});
+}
+
 module.exports = {
   bmi_category_and_health_risk: bmi_category_and_health_risk,
   calculate_bmi: calculate_bmi,
   getLogger: getLogger,
+  isEmpty:isEmpty
 };

@@ -9,6 +9,10 @@ require("dotenv").config();
 let cache = apicache.middleware;
 
 router.post("/bmi/", cache(process.env.API_CACHE), function (req, res) {
+  if(isEmpty(req.body)) {
+    console.log('Object missing');
+    res.status(500).send("Could not perform this action,request is empty !");
+  }
   try {
     logger.log({ message: "srtart : /api/bmi is called ", level: "info" });
     var result = utils.calculate_bmi(req);
@@ -23,6 +27,14 @@ router.post("/bmi/", cache(process.env.API_CACHE), function (req, res) {
     res.status(500).json(error);
   }
 });
+
+function isEmpty(obj) {
+  for(var prop in obj) {
+      if(obj.hasOwnProperty(prop))
+          return false;
+  }
+  return JSON.stringify(obj) === JSON.stringify({});
+}
 
 router.get("/status/", (req, res) => {
   res.send("server is running");
