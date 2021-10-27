@@ -1,36 +1,26 @@
-# BMI calulator
-The application is used for calculating bulk request and will return BMI result
+# # Getting Started - BMI Calculator
+The application is used for calculating bulk request and will return BMI result and other anlaysis
 
-
-## Usage
-
-### Install dependencies
-
-```bash
-npm install
-```
-
-### Run on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-# Normal Installation
+# Usage and Normal Installation
 
 1. Install node.js and git
 2. Add them to path if not already in path.
-3. Install typescript globally with `npm install`
-4. Run npm install to get all the dependencies installed
-5. cd to the project directory
-6. Run dev `npm run-script start-dev`
-7. Run prod `npm run-script start-prod`
+3. Run  `npm install` to get all the dependencies installed
+4. cd to the project directory
+5. Run dev `npm run-script start-dev`
+6. Run prod `npm run-script start-prod`
 
-# Getting Started
+#  Run on 
+http://localhost:3000
 
-Minimal Mistakes takes advantage of Sass and data files to make customizing easier. These features require Jekyll 2.x and will not work with older versions of Jekyll.
+# Generate API Documentation (OpenAPI/Swagger)
 
-To learn how to install and use this theme check out the [Setup Guide](http://mmistakes.github.io/minimal-mistakes/theme-setup/) for more information.
+You can generate documentation site by providing details regarding all the endpoints in the `apidocs-swagger.json` file in the root and once done, you can start the server and your documentation will get exposed in `/api-docs` URL. You can use tools like [OpenAPI GUI](https://mermade.github.io/openapi-gui/) to help generate the YAML file for you.
+
+# Editorconfig
+
+A ```.editorconfig``` file has been added to the project to enable consistency in development across different IDEs used by different developers. Visit http://editorconfig.org for more information. You might have to install plugins in your editor to get this to work.
+
 
 # Formatting
 
@@ -40,18 +30,9 @@ You can format the project manually by running the command `npm run format` and 
 
 You may want to install an extension for your IDE though. More details on the same is available at https://prettier.io
 
-## Linting
+# Linting
 
 You can customize rules if needed using the .eslintrc file placed in the root directory. If you are using VSCode, you can have the ESLint extension installed. While linting is run everytime you build/start the server, you can manually run it by `npm run lint`
-
-# Generate API Documentation (OpenAPI/Swagger)
-
-You can generate documentation site by providing details regarding all the endpoints in the `apidoc.yaml` file in the root and once done, you can start the server and your documentation will get exposed in `/api-docs` URL. You can use tools like [OpenAPI GUI](https://mermade.github.io/openapi-gui/) to help generate the YAML file for you.
-
-# Editorconfig
-
-A ```.editorconfig``` file has been added to the project to enable consistency in development across different IDEs used by different developers. Visit http://editorconfig.org for more information. You might have to install plugins in your editor to get this to work.
-
 
 # Environmental Variables
 
@@ -90,6 +71,15 @@ Since this project uses all the latest features of the node ecosystem, it requir
 2. "eslint": "^8.1.0"
 3. "mocha": "^9.1.3"
 4. "nodemon": "^2.0.14"
+5. "eslint-config-prettier": "^6.10.1"
+6. "eslint-plugin-prettier": "^3.1.2"
+7. "grunt": "^1.4.1"
+8. "grunt-contrib-clean": "^2.0.0"
+9. "grunt-contrib-concat": "^2.0.0"
+10. "grunt-contrib-jshint": "^3.1.1"
+11. "grunt-contrib-qunit": "^5.1.1"
+12. "grunt-contrib-uglify": "^5.0.1"   
+13. "prettier": "^2.4.1"
 
 # Added express-rate-limit
 
