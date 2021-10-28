@@ -3,14 +3,14 @@
 const assert = require("chai").assert;
 const app = require("../utility/utility");
 // const app = require("../test/sampleReq.json");
-const https = require('https')
+// const https = require('https')
+// const chai = require('chai'),
+// chaiHttp = require('chai-http'),
+// server = require('../app'),
+// faker = require('faker'),
+// should = chai.should();
+// chai.use(chaiHttp);
 
-const chai = require('chai'),
-chaiHttp = require('chai-http'),
-server = require('../app'),
-faker = require('faker'),
-should = chai.should();
-chai.use(chaiHttp);
 describe("Testing bmi_category_and_health_risk() ", function () {
   it("Testing bmi_category_and_health_risk return not null ", function () {
     let result = app.bmi_category_and_health_risk(18.4);

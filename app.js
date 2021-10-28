@@ -9,6 +9,7 @@ const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 const app = express_server();
 const utils = require("./utility/utility");
+ 
 
 //Rate limiting configuration
 const limiter = rateLimit({
@@ -18,7 +19,10 @@ const limiter = rateLimit({
 app.use(limiter);
 app.set("trust proxy ", 1);
 
-app.use(body_parser.urlencoded({ extended: true }));
+app.use(body_parser.urlencoded({ extended: true })); 
+// parse application/json
+app.use(body_parser.json())
+
 var fs = require("fs");
 
 const server_port = process.env.PORT || 3000;
@@ -58,7 +62,7 @@ app.use("/api/", require("./routes/app-router"));
 // Capture 500 errors
 app.use((err, req, res, next) => {
   logger.info(next.HOST);
-  res.status(500).send("Could not perform this action!");
+  res.status(500).send("Could not perform this action,Invalid Request!");
   logger.error(
     `${err.status || 500} - ${res.statusMessage} - ${err.message} - ${
       req.originalUrl

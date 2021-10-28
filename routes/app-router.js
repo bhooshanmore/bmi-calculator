@@ -9,13 +9,11 @@ require("dotenv").config();
 let cache = apicache.middleware;
 
 router.post("/bmi/", cache(process.env.API_CACHE), function (req, res) {
-  if(utils.isEmpty(req.body)) {
-    console.log('Object missing');
-    res.status(500).send("Could not perform this action,request is empty !");
-  }
 
   try {
     logger.log({ message: "srtart : /api/bmi is called ", level: "info" });
+    logger.log({ message: req.body, level: "info" });
+    logger.log({ message: req, level: "info" });
     var result = utils.calculate_bmi(req);
 
     if (process.env.NODE_ENV !== "production") {
