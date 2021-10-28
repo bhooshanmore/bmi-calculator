@@ -14,7 +14,7 @@ router.post("/bmi/", cache(process.env.API_CACHE), function (req, res) {
     logger.log({ message: "srtart : /api/bmi is called ", level: "info" });
     logger.log({ message: req.body, level: "info" });
     logger.log({ message: req, level: "info" });
-    var result = utils.calculate_bmi(req);
+    var result = utils.calculate_bmi(req.body);
 
     if (process.env.NODE_ENV !== "production") {
       logger.log({ message: result, level: "info" });
